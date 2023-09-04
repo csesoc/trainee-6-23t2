@@ -1,0 +1,62 @@
+.sidebar-container {
+    padding-top:10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin:25px;
+    background-color: black;
+    display: flex;
+    flex-direction:column;
+    color: white;
+    width: 20%;
+    height: 100%;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+.playlist-text {
+    display:flex;
+    flex-direction: column;
+    gap: 3vh;
+    align-items: flex-start;
+}
+
+.type-button {
+    display:flex;
+    flex-direction: row;
+    gap:10px;
+    margin: 15px;
+}
+
+.type-button button {
+    width: 30%;
+    color:white;
+    background-color: #222222;
+    border-width: 0px;
+    border-radius: 10px;
+    height:100%;
+}
+
+.type-button button:hover {
+    cursor: pointer;
+}
+
+.playlist-image {
+    margin-right: 10px;
+}
+
+.display-list{
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.display-list button {
+    width:100%;
+    background-color: black;
+    color:white;
+    border-width: 0px;
+    display:flex;
+    flex-direction: row;
+}

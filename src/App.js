@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { fetchProfile } from './api/api.js';
+import Sidebar from './components/sidebar.jsx'
 
 const LOGIN_URI = "http://localhost:5000/auth/login";
 
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      {token === "" ? <a href={LOGIN_URI}> Login to Spotify </a> : <p>Welcome</p>}
+      {token === "" ? <a href={LOGIN_URI}> Login to Spotify </a> : <Sidebar token={token}/>}
     </div>
   );
 }
