@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchUserPlaylists, fetchUsersSavedAlbums } from '../api/api'
 import './sidebar.css'
 
-export default function Sidebar({token}) {
+export default function Sidebar({token, setSelectedPlaylist, setSelectedAlbum}) {
   const [renderedList, setRenderedList] = useState([])
   const [playlists, setPlaylists] = useState({})
   const [albums, setAlbums] = useState({})
@@ -13,25 +13,14 @@ export default function Sidebar({token}) {
       const albumres = await fetchUsersSavedAlbums(token);
       setPlaylists(playlist_res);
       setAlbums(albumres);
-      console.log(playlist_res);
-      console.log(albumres);
       setRenderedList([...playlist_res.items, ...albumres.items]);
     }
     getData()
   }, [token])
 
-
-  const handlePlaylistFilter = () => {
-    setRenderedList(playlists.items);
-  } 
-
-  const handleAlbumFilter = () => {
-    setRenderedList(albums.items);
-  }
-
-  const handleNoFilter = () => {
-    setRenderedList([...playlists.items, ...albums.items]);
-  }
+  const handlePlaylistFilter = () => setRenderedList(playlists.items); 
+  const handleAlbumFilter = () => setRenderedList(albums.items);
+  const handleNoFilter = () => setRenderedList([...playlists.items, ...albums.items]);
 
   return (
     <div className='sidebar-container'>
@@ -47,20 +36,20 @@ export default function Sidebar({token}) {
             </button>
         </div>
         <div className="display-list">
-            {renderedList?.map((item) => (
-              item.type === 'playlist' ? 
-              <PlaylistButton key={item.id}
-                              playlistImage={item.images[item.images.length - 1].url}
-                              playlist={item}
-                              width={item.images[item.images.length - 1].width}
-                              height={item.images[item.images.length - 1].height}/>
-                              :
-              <AlbumButton  key={item.album.id}
-                            albumImage={item.album.images[item.album.images.length - 1].url}
-                            album={item.album}
-                            width={60}
-                            height={60}/>
-            ))}
+          {renderedList?.map((item) => (
+          item.type === 'playlist' ? 
+          <PlaylistButton onClickHandler={() => {{setSelectedPlaylist(item.id)}}}
+                          key={item.id}
+                          playlist={item}
+                          width={item.images[item.images.length - 1].width}
+                          height={item.images[item.images.length - 1].height}/>
+                          :
+          <AlbumButton  onClickHandler={() => {{setSelectedAlbum(item.album.id)}}}
+                        key={item.album.id}
+                        album={item.album}
+                        width={60}
+                        height={60}/>
+          ))}
         </div>
         
     </div>
@@ -68,12 +57,10 @@ export default function Sidebar({token}) {
 }
 
 
-
-
-function PlaylistButton({ playlist, playlistImage, width, height }) {
+function PlaylistButton({ onClickHandler, playlist, width, height }) {
   return (
-    <button>
-      <img src={playlistImage} alt='' 
+    <button className='sidebar-list-item' onClick={onClickHandler}>
+      <img src={playlist.images[playlist.images.length - 1].url} alt='' 
            width={width ? width : '60'} height={height ? height : '60'}
            className='playlist-image'/>
       <div className='playlist-text'>
@@ -84,10 +71,10 @@ function PlaylistButton({ playlist, playlistImage, width, height }) {
   );
 }
 
-function AlbumButton({albumImage, album, width, height}) {
+function AlbumButton({ onClickHandler, album, width, height}) {
   return (
-    <button>
-      <img src={albumImage} alt='' 
+    <button className='sidebar-list-item' onClick={onClickHandler}>
+      <img src={album.images[album.images.length - 1].url} alt='' 
            width={width ? width : '60'} height={height ? height : '60'}
            className='playlist-image'/>
       <div className='playlist-text'>
@@ -97,3 +84,4 @@ function AlbumButton({albumImage, album, width, height}) {
     </button>
   );
 }
+

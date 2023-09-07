@@ -18,3 +18,17 @@ export async function fetchUsersSavedAlbums(token) {
     })
     return await result.json();
 }
+
+export async function fetchPlaylistItems(token, playlist_id) {
+    const result = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks`, {
+        method: "GET", headers : {'Authorization': 'Bearer ' + token}
+    })
+    return await result.json();
+}
+
+export async function fetchAlbumItems(token, album_id) {
+    const result = await fetch(`https://api.spotify.com/v1/albums/${album_id}/tracks`, {
+        method: "GET", headers : {'Authorization': 'Bearer ' + token}
+    })
+    return await result.json();
+}

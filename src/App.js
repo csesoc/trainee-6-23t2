@@ -1,7 +1,6 @@
 import './App.css';
-import { useState, useEffect } from 'react';
-import { fetchProfile } from './api/api.js';
-import Sidebar from './components/sidebar.jsx'
+import { useState, useEffect, createContext } from 'react';
+import Main from './components/main.jsx'
 
 const LOGIN_URI = "http://localhost:5000/auth/login";
 
@@ -17,17 +16,9 @@ function App() {
     getToken();
   },[]);
 
-  useEffect(() => {
-    async function getProfile() {
-      const response = await fetchProfile(token);
-      console.log(response);
-    }
-    getProfile();
-  },[token]);
-
   return (
     <div className="App">
-      {token === "" ? <a href={LOGIN_URI}> Login to Spotify </a> : <Sidebar token={token}/>}
+      {token === "" ? <a href={LOGIN_URI}> Login to Spotify </a> : <Main token={token} />}
     </div>
   );
 }

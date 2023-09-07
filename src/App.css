@@ -6,5 +6,28 @@
   justify-content: center;
   align-items: center;
   overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif
 }
 
+
+
+::-webkit-scrollbar {
+  width: 0.9vw;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #222222;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
