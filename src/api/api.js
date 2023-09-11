@@ -32,3 +32,16 @@ export async function fetchAlbumItems(token, album_id) {
     })
     return await result.json();
 }
+
+export async function fetchPlaylistCoverImage(token, playlist_id) {
+    const result = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/images`, {
+        method: "GET", headers : {'Authorization': 'Bearer ' + token}
+    })
+} 
+
+export async function fetchPlaylist(token, playlistId) {
+    const result = await fetch('https://api.spotify.com/v1/me/playlists/' + playlistId {
+        method: "GET", headers : {'Authorization': 'Bearer ' + token}
+    })
+    return await result.json();
+}

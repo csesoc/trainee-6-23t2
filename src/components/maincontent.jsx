@@ -5,6 +5,7 @@ export default function Maincontent({selectedItemData}) {
   
     return (
     <div className='main-list-wrap'>
+        {selectedItemData.items ? 
         <table className='main-list' style={{width:"100%"}}>
             <thead >
                 <tr>
@@ -16,10 +17,11 @@ export default function Maincontent({selectedItemData}) {
                 </tr>
             </thead>
             <tbody>
-                {selectedItemData.items ? selectedItemData.items.map((item, index) => 
-                <Mainlistitem key={index} index={index} item={item} />) : null}
+                {selectedItemData.items.map((item, index) => 
+                <Mainlistitem key={index} index={index} item={item} />)}
             </tbody>
         </table>
+        : null}
     </div>
   )
 }
