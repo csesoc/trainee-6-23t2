@@ -40,7 +40,7 @@ export async function fetchPlaylistCoverImage(token, playlist_id) {
 } 
 
 export async function fetchPlaylist(token, playlistId) {
-    const result = await fetch('https://api.spotify.com/v1/me/playlists/' + playlistId {
+    const result = await fetch('https://api.spotify.com/v1/me/playlists/' + playlistId, {
         method: "GET", headers : {'Authorization': 'Bearer ' + token}
     })
     return await result.json();
