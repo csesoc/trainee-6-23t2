@@ -22,7 +22,6 @@
     gap:2%;
 }
 
-
 .main-header-wrap {
     width:100%;
     height:35%;
@@ -38,10 +37,12 @@
     background-color: transparent;
     text-align: left;
     margin-left:3%;
+    font-size: 14px;
 }
 
 .main-list-text {
     margin-left: 8%;
+    margin-top: 1%;
     display:flex;
     flex-direction: column;
     height:50%;    
@@ -49,6 +50,8 @@
     white-space: nowrap;
     overflow:hidden;
     text-overflow: ellipsis;  
+    gap: 1vh;
+    justify-content: space-between;
 }
 .main-list-title {
     display:flex;

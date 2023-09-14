@@ -1,7 +1,7 @@
 import React from 'react'
 import './main.css'
 
-export default function Maincontent({selectedItemData}) {
+export default function Maincontent({selectedItemData, setPlaybackItem}) {
   
     return (
     <div className='main-list-wrap'>
@@ -29,15 +29,16 @@ export default function Maincontent({selectedItemData}) {
 
 function Mainlistitem({item, index}) {
     return (
-        <tr>
+        <tr>  
             <td width="5%">{index + 1}</td>
             <td className='main-list-title'>
-                <img src={item.track.album.images[item.track.album.images.length - 1].url} alt=":(" width="50" height="50"></img>
+                <img src={item.track.album.images[item.track.album.images.length - 1].url} 
+                        alt=":(" width="50" height="50"></img>
                 <div className='main-list-text'>
                     <div>
-                        {item.track.name}
+                        <b>{item.track.name}</b>
                     </div>
-                    <div>
+                    <div style={{color:"silver"}}>
                         {item.track.artists[0].name}
                     </div>
                 </div>
