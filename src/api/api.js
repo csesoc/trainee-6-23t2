@@ -40,3 +40,10 @@ export async function fetchPlaylist(token, playlist_id) {
     })
     return await result.json();
 }
+
+export async function fetchAlbum(token, album_id) {
+    const result = await fetch(`https://api.spotify.com/v1/albums/${album_id}`, {
+        method: "GET", headers: {'Authorization': 'Bearer ' + token}
+    })
+    return await result.json();
+}

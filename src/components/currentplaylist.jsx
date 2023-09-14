@@ -1,16 +1,15 @@
-import { fetchPlaylist, fetchPlaylistCoverImage} from '../api/api'
+import { fetchPlaylist, fetchAlbum} from '../api/api'
 import './currentplaylist.css'
 import { useState, useEffect } from 'react'
 
-export default function CurrentPlaylist({token, selectedPlaylistId}) {
+export default function CurrentPlaylist({token, selectedPlaylistId, selectedType}) {
 
   const [relevantInformation, setRelevantInformation] = useState({});
   const [playListSelected, setPlayListSelected] = useState(false);
 
   useEffect(() => {
-    async function getData() {
+    async function getPlaylistData() {
       const res = await fetchPlaylist(token, selectedPlaylistId);
-      console.log(res);
       setRelevantInformation({name: res.name, 
                               public: res.public, 
                               playlistOwner: res.owner.display_name, 
@@ -19,10 +18,13 @@ export default function CurrentPlaylist({token, selectedPlaylistId}) {
                               playlistCoverUrl: res.images[0].url});
       setPlayListSelected(true);
     }
-    if (selectedPlaylistId !== '') {
-      getData();
+    if (selectedPlaylistId !== '' && selectedType === 'playlist') {
+      getPlaylistData();
+    } else if (selectedPlaylistId !== '' && selectedType === 'album') {
+      setPlayListSelected(false);
+      // couldnt figure it out so temporary solution
     }
-  }, [selectedPlaylistId])
+  }, [selectedPlaylistId, selectedType])
 
 
   return (

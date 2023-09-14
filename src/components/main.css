@@ -40,6 +40,20 @@
     font-size: 14px;
 }
 
+.main-list-album-text {
+    margin-top: 1%;
+    display:flex;
+    flex-direction: column;
+    height:50%;    
+    max-width: 350px;   
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;  
+    gap: 1vh;
+    justify-content: space-between;
+    float:left;
+}
+
 .main-list-text {
     margin-left: 8%;
     margin-top: 1%;

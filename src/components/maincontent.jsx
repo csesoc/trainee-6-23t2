@@ -1,7 +1,8 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import './main.css'
 
-export default function Maincontent({selectedItemData, setPlaybackItem}) {
+export default function Maincontent({selectedItemData, setPlaybackItem, selectedType}) {
+
   
     return (
     <div className='main-list-wrap'>
@@ -11,14 +12,16 @@ export default function Maincontent({selectedItemData, setPlaybackItem}) {
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Album</th>
-                    <th>Date Added</th>
+                    {selectedType === 'playlist' ? <th>Album</th>  : null}
+                    {selectedType === 'playlist' ? <th>Date Added</th> : null}
                     <th>Length</th>
                 </tr>
             </thead>
             <tbody>
-                {selectedItemData.items.map((item, index) => 
-                <Mainlistitem key={index} index={index} item={item} />)}
+                {selectedType === 'playlist' ? 
+                selectedItemData.items.map((item, index) => <Playlistitem key={index} index={index} item={item} />) 
+                :
+                selectedItemData.items.map((item, index) => <Albumitem key={index} index={index} item={item} />)}
             </tbody>
         </table>
         : null}
@@ -26,8 +29,26 @@ export default function Maincontent({selectedItemData, setPlaybackItem}) {
   )
 }
 
+function Albumitem({item, index}) {
+    return (
+        <tr>  
+            <td width="5%">{index + 1}</td>
+            <td className='main-list-title'>
+                <div className='main-list-album-text'>
+                    <div>
+                        <b>{item.name}</b>
+                    </div>
+                    <div style={{color:"silver"}}>
+                        {item.artists[0].name}
+                    </div>
+                </div>
+            </td>
+            <td width="15%">{ms_to_display(item.duration_ms)}</td>
+        </tr>
+    )
+}
 
-function Mainlistitem({item, index}) {
+function Playlistitem({item, index}) {
     return (
         <tr>  
             <td width="5%">{index + 1}</td>
