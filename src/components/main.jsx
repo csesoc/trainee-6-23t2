@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import CurrentPlaylist from './currentplaylist.jsx'
 import MainContent from './maincontent.jsx'
 import Sidebar from './sidebar'
+import Player from './Player'
 
 export default function Main({token}) {
 
@@ -44,6 +45,7 @@ export default function Main({token}) {
         <div className='main-content'>
             <CurrentPlaylist token={token} selectedPlaylistId={selectedType === 'playlist' ? selectedPlaylistID : selectedAlbumID} selectedType={selectedType}/>
             <MainContent selectedItemData={selectedItemData} setPlaybackItem={setPlaybackItem} selectedType={selectedType}/>
+            <Player/>
         </div>
     </div>
   )
