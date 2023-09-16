@@ -1,9 +1,9 @@
-import express from 'express';
+import 'dotenv/config'
+
 import cors from 'cors';
+import express from 'express';
 import { generateRandomString } from './helper.js';
 import request from 'request';
-
-import 'dotenv/config'
 
 const port = 5000;
 
@@ -21,27 +21,7 @@ app.listen(port, () => {
 });
 
 app.get('/auth/login', (req, res) => {
-    let scope = "streaming \
-                 user-read-email \
-                 user-read-private \
-                 ugc-image-upload \
-                 user-read-playback-state \
-                 user-modify-playback-state \
-                 user-read-currently-playing \
-                 app-remote-control \
-                 streaming \
-                 playlist-read-private \
-                 playlist-read-collaborative \
-                 playlist-modify-private \
-                 playlist-modify-public \
-                 user-follow-modify \
-                 user-follow-read \
-                 user-read-playback-position \
-                 user-top-read \
-                 user-read-recently-played \
-                 user-library-modify \
-                 user-library-read \
-                 playlist-read-private";
+    let scope = "streaming user-read-email user-read-private ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read playlist-read-private";
 
     const state = generateRandomString(16);
 
@@ -81,7 +61,7 @@ app.get('/auth/callback', (req, res) => {
 
         request.post(authOptions, function(error, response, body) {
             if (!error && (response.statusCode === 200)) {
-              access_token = body.access_token;
+              global.access_token = body.access_token;
               res.redirect('http://localhost:3000');
             }
         });
@@ -92,6 +72,6 @@ app.get('/auth/callback', (req, res) => {
 app.get('/auth/token', (req, res) => {
     res.json(
        {
-          access_token: access_token
+          access_token: global.access_token
        })
 })

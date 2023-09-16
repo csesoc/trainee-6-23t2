@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
 import './main.css'
-import Sidebar from './sidebar'
-import CurrentPlaylist from './currentplaylist.jsx' 
+
+import { fetchAlbumItems, fetchPlaylistItems } from '../api/api'
+import { useEffect, useState } from 'react'
+
+import CurrentPlaylist from './currentplaylist.jsx'
 import MainContent from './maincontent.jsx'
-import { fetchPlaylistItems, fetchAlbumItems} from '../api/api'
+import Sidebar from './sidebar'
 
 export default function Main({token}) {
 
@@ -40,7 +42,7 @@ export default function Main({token}) {
         <Sidebar token={token} setSelectedPlaylist={setSelectedPlaylistID}
                                setSelectedAlbum={setSelectedAlbumID}/>
         <div className='main-content'>
-            <CurrentPlaylist token={token} selectedPlaylistId={selectedPlaylistID} selectedType={selectedType}/>
+            <CurrentPlaylist token={token} selectedPlaylistId={selectedType === 'playlist' ? selectedPlaylistID : selectedAlbumID} selectedType={selectedType}/>
             <MainContent selectedItemData={selectedItemData} setPlaybackItem={setPlaybackItem} selectedType={selectedType}/>
         </div>
     </div>
