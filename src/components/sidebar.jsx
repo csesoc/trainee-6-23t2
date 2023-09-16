@@ -11,6 +11,7 @@ export default function Sidebar({
   const [renderedList, setRenderedList] = useState([]);
   const [playlists, setPlaylists] = useState({});
   const [albums, setAlbums] = useState({});
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     async function getData() {
@@ -24,17 +25,25 @@ export default function Sidebar({
     getData();
   }, [token]);
 
-  const handlePlaylistFilter = () => setRenderedList(playlists.items);
-  const handleAlbumFilter = () => setRenderedList(albums.items);
-  const handleNoFilter = () =>
+  const handlePlaylistFilter = () => {
+    setRenderedList(playlists.items);
+    setFilter("playlist");
+  }
+  const handleAlbumFilter = () => {
+    setRenderedList(albums.items);
+    setFilter("album");
+  }
+  const handleNoFilter = () => {
     setRenderedList([...playlists.items, ...albums.items]);
+    setFilter("all");
+  }
 
   return (
     <div className="sidebar-container">
       <div className="type-button">
-        <button onClick={handleNoFilter}>X</button>
-        <button onClick={handlePlaylistFilter}>Playlists</button>
-        <button onClick={handleAlbumFilter}>Albums</button>
+        <button onClick={handleNoFilter}>{filter === 'all' ? <b>All</b> : 'All'}</button>
+        <button onClick={handlePlaylistFilter}>{filter === 'playlist' ? <b>Playlists</b> : 'Playlists'}</button>
+        <button onClick={handleAlbumFilter}>{filter === 'album' ? <b>Albums</b> : 'Albums'}</button>
       </div>
       <div className="display-list">
         {renderedList?.map((item) =>

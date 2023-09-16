@@ -30,7 +30,7 @@ export default function MainContent({
                 ))}
           </tbody>
         </table>
-      ) : null}
+      ) : <h1>Click on a playlist/album to view it!</h1>}
     </div>
   );
 }
