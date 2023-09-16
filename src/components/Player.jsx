@@ -1,50 +1,89 @@
-import React, { useState, useEffect } from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import './Player.css';
-import Slider from '@mui/material/Slider';
-import IconButton from '@mui/material/IconButton';
-import PauseRounded from '@mui/icons-material/PauseRounded';
-import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
-import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
-import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
+import "./Player.css";
 
+import React, { useEffect, useState } from "react";
+import { styled, useTheme } from "@mui/material/styles";
 
-export default function Player(props) {
-    const theme = useTheme();
-    const mainIconColor = theme.palette.mode === 'dark' ? '#fff' : '#000';
-    const [paused, setPaused] = React.useState(false);
+import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
+import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
+import IconButton from "@mui/material/IconButton";
+import PauseRounded from "@mui/icons-material/PauseRounded";
+import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
+import Slider from "@mui/material/Slider";
+
+const track = {
+  name: "",
+  album: {
+    images: [{ url: "" }],
+  },
+  artists: [{ name: "" }],
+};
+
+export default function Player({ player }) {
+  const [paused, setPaused] = useState(true);
+  const [active, setActive] = useState(false);
+  const [current_track, setTrack] = useState(track);
+
+  player.addListener("player_state_changed", (state) => {
+    if (!state) {
+      return;
+    }
+
+    setTrack(state.track_window.current_track);
+    setPaused(state.paused);
+
+    player.getCurrentState().then((state) => {
+      !state ? setActive(false) : setActive(true);
+    });
+  });
+
+  const theme = useTheme();
+  const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#000";
 
   return (
-    <div className='player'>
-        <img src='https://i.redd.it/taylor-swift-midnights-spring-edition-fanmade-by-me-v0-a2utwxmzbpv91.jpg?width=2160&format=pjpg&auto=webp&s=98ccb7cd79d9a354e58678ecc5c406953c2c6f0a' alt='Song Cover' className='song-image' />
-        <div className='controller'>
-            <div className='choose-song'>
-                <IconButton aria-label="previous song">
-                    <FastRewindRounded sx={{ fontSize: '3.5rem' }} htmlColor={mainIconColor} />
-                </IconButton>
-                <IconButton
-                    aria-label={paused ? 'play' : 'pause'}
-                    onClick={() => setPaused(!paused)}
-                >
-                    {paused ? (
-                    <PlayArrowRounded
-                        sx={{ fontSize: '4rem' }}
-                        htmlColor={mainIconColor}
-                    />
-                    ) : (
-                    <PauseRounded sx={{ fontSize: '4rem' }} htmlColor={mainIconColor} />
-                    )}
-                </IconButton>
-                <IconButton aria-label="next song">
-                    <FastForwardRounded sx={{ fontSize: '3.5rem' }} htmlColor={mainIconColor} />
-                </IconButton>
-            </div>
-            <div className='slider'>
-                <p>0:00</p>
-                <Slider defaultValue={0}/>
-                <p>3:23</p>
-            </div>
+    <div className="player">
+      <img src={current_track.album.images[0].url} alt="Song Cover" className="song-image" />
+      <div className="controller">
+        <div className="choose-song">
+          <IconButton aria-label="previous song" onClick={() => player.previousTrack()}>
+            <FastRewindRounded
+              sx={{ fontSize: "3.5rem" }}
+              htmlColor={mainIconColor}
+            />
+          </IconButton>
+          <IconButton
+            aria-label={paused ? "play" : "pause"}
+            onClick={
+                () => {
+                    setPaused(!paused);
+                    player.togglePlay();
+                }
+            }
+          >
+            {paused ? (
+              <PlayArrowRounded
+                sx={{ fontSize: "4rem" }}
+                htmlColor={mainIconColor}
+              />
+            ) : (
+              <PauseRounded
+                sx={{ fontSize: "4rem" }}
+                htmlColor={mainIconColor}
+              />
+            )}
+          </IconButton>
+          <IconButton aria-label="next song" onClick={() => player.nextTrack()}>
+            <FastForwardRounded
+              sx={{ fontSize: "3.5rem" }}
+              htmlColor={mainIconColor}
+            />
+          </IconButton>
         </div>
+        <div className="slider">
+          <p>0:00</p>
+          <Slider defaultValue={0} />
+          <p>3:23</p>
+        </div>
+      </div>
     </div>
   );
 }
