@@ -14,10 +14,13 @@
 }
 
 .playlist-text {
+    max-width:70%;
     display:flex;
     flex-direction: column;
     gap: 3vh;
     align-items: flex-start;
+    white-space: nowrap;
+    overflow:hidden;
 }
 
 .type-button {
