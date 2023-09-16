@@ -7,6 +7,17 @@
     display: flex;
     justify-content: flex-start;
     padding-left: 0;
+    border-radius: 10px;
+    padding-left: 1%;
+}
+
+.main-list-button:hover {
+    cursor: pointer;
+    background-color: #222222;
+}
+.main-list-album-button:hover {
+    cursor: pointer;
+    background-color: #222222;
 }
 
 .main-list {
@@ -37,20 +48,22 @@
     display: flex;
     justify-content: flex-start;
     padding-left: 0;
+    border-radius: 10px;
 }
 
 
 .filler {
-    width: 12.3vw;
+    width: 11.6vw;
 }
 .main-list-header-index {
     width: 3.5vw;
+    padding-left: 1vw;
 }
 .main-list-header-title {
-    width: 32vw;
+    width: 30.3vw;
 }
 .main-list-header-album {
-    width: 16.8vw;
+    width: 15.5vw;
 }
 .main-list-header-date {
     width: 7.8vw;
@@ -90,7 +103,7 @@
 }
 
 .main-list-wrap {
-    width:100%;
+    width:95%;
     min-height: 65%;
     padding-top: 2vh;
     display: flex;
