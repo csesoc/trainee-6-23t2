@@ -1,3 +1,8 @@
+.main-list-button {
+    /* display: block; */
+    width: 100%;
+}
+
 .main {
     display:flex;
     margin: 0;
