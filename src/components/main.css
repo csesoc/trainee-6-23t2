@@ -1,6 +1,62 @@
 .main-list-button {
     /* display: block; */
     width: 100%;
+    background-color: transparent;
+    color: white;
+    border-width: 0px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0;
+}
+
+.main-list {
+    text-align: left;
+
+}
+
+.main-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 3%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 0;
+    width: 100%;
+    height: 5vh;
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.main-list-album-button {
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    border-width: 0px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0;
+}
+
+
+.filler {
+    width: 12.3vw;
+}
+.main-list-header-index {
+    width: 3.5vw;
+}
+.main-list-header-title {
+    width: 32vw;
+}
+.main-list-header-album {
+    width: 16.8vw;
+}
+.main-list-header-date {
+    width: 7.8vw;
+}
+.main-list-header-length {
+    width: 6vw;
 }
 
 .main {
@@ -61,6 +117,7 @@
 
 .main-list-text {
     margin-left: 8%;
+    text-align: left;
     margin-top: 1%;
     display:flex;
     flex-direction: column;
@@ -79,6 +136,20 @@
 }
 
 .main-list-name {
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+.main-list-date {
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    text-align: center;
+}
+
+.main-list-duration {
     white-space: nowrap;
     overflow:hidden;
     text-overflow: ellipsis;

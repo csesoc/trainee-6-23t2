@@ -11,13 +11,13 @@ export default function MainContent({
     <div className="main-list-wrap">
       {selectedItemData.items ? (
         <table className="main-list" style={{ width: "100%" }}>
-          <thead>
+          <thead className="main-list-header">
             <tr>
-              <th>#</th>
-              <th>Title</th>
-              {selectedType === "playlist" ? <th>Album</th> : null}
-              {selectedType === "playlist" ? <th>Date Added</th> : null}
-              <th>Length</th>
+              <th className='main-list-header-index'>#</th>
+              <th className='main-list-header-title'>Title</th>
+              {selectedType === "playlist" ? <th className='main-list-header-album'>Album</th> : <th className="filler"></th>}
+              {selectedType === "playlist" ? <th className='main-list-header-date'>Date Added</th> : <th className="filler"></th>}
+              <th className='main-list-header-length'>Length</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +39,7 @@ function AlbumItem({ item, index }) {
   return (
     <tr>
       <td colSpan="5">
-        <button className="main-list-button" >
+        <button className="main-list-album-button" >
           <table className="main-list" style={{ width: "100%" }}>
             <tbody>
               <tr>
@@ -88,7 +88,7 @@ function PlaylistItem({ item, index }) {
                     <div>
                       <b>{item.track.name}</b>
                     </div>
-                    <div style={{ color: "silver" }}>
+                    <div className="main-list-text-name" style={{ color: "silver" }}>
                       {item.track.artists[0].name}
                     </div>
                   </div>
@@ -96,8 +96,8 @@ function PlaylistItem({ item, index }) {
                 <td width="20%" className="main-list-name">
                   {item.track.album.name}
                 </td>
-                <td width="15%">{date_to_display(item.added_at)}</td>
-                <td width="15%">{ms_to_display(item.track.duration_ms)}</td>
+                <td className='main-list-date' width="15%">{date_to_display(item.added_at)}</td>
+                <td className='main-list-duration' width="15%">{ms_to_display(item.track.duration_ms)}</td>
               </tr>
             </tbody>
           </table>
