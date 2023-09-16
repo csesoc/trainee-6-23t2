@@ -48,7 +48,7 @@ export default function CurrentPlaylist({
     } else if (selectedPlaylistId !== "" && selectedType === "album") {
       getAlbumData();
     }
-  }, [selectedPlaylistId, selectedType]);
+  }, [selectedPlaylistId, selectedType, token]);
 
   return (
     <div>

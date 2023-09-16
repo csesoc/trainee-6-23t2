@@ -24,7 +24,7 @@ export default function Main({token}) {
     if (selectedPlaylistID !== '') {
       getData();
     }
-  }, [selectedPlaylistID])
+  }, [selectedPlaylistID, token])
 
   useEffect(() => {
     async function getData() {
@@ -35,7 +35,7 @@ export default function Main({token}) {
     if (selectedAlbumID !== '') {
       getData();
     }
-  }, [selectedAlbumID])
+  }, [selectedAlbumID, token])
 
   return (
     <div className='main'>

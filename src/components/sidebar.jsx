@@ -41,9 +41,7 @@ export default function Sidebar({
           item.type === "playlist" ? (
             <PlaylistButton
               onClickHandler={() => {
-                {
-                  setSelectedPlaylist(item.id);
-                }
+                setSelectedPlaylist(item.id);
               }}
               key={item.id}
               playlist={item}
@@ -53,9 +51,7 @@ export default function Sidebar({
           ) : (
             <AlbumButton
               onClickHandler={() => {
-                {
-                  setSelectedAlbum(item.album.id);
-                }
+                setSelectedAlbum(item.album.id);
               }}
               key={item.album.id}
               album={item.album}
@@ -82,7 +78,8 @@ function PlaylistButton({ onClickHandler, playlist, width, height }) {
       <div className="playlist-text">
         <b>{playlist.name}</b>
         <b>
-          {playlist.type.charAt(0).toUpperCase() + playlist.type.slice(1)} •   {playlist.owner.display_name}
+          {playlist.type.charAt(0).toUpperCase() + playlist.type.slice(1)} •{" "}
+          {playlist.owner.display_name}
         </b>
       </div>
     </button>
@@ -102,7 +99,8 @@ function AlbumButton({ onClickHandler, album, width, height }) {
       <div className="playlist-text">
         <b>{album.name}</b>
         <b>
-          {album.type.charAt(0).toUpperCase() + album.type.slice(1)} • {album.artists[0].name}
+          {album.type.charAt(0).toUpperCase() + album.type.slice(1)} •{" "}
+          {album.artists[0].name}
         </b>
       </div>
     </button>
