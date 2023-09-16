@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      {token === "" ? <a href={LOGIN_URI}> Login to Spotify </a> : <Main token={token} />}
+      {token === "" ? <a className="login-text" href={LOGIN_URI}> Login to Spotify </a> : <Main token={token} />}
     </div>
   );
 }
