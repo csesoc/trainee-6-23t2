@@ -3,9 +3,10 @@
     align-items: center;
     position: fixed; 
     bottom: 0;
+    width: 73%;
     height: 20%;
     padding: 10px;
-    background-color: pink;
+    background-color: black;
     border-radius: 10px;
 }
 

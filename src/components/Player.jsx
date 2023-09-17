@@ -37,7 +37,7 @@ export default function Player({ player }) {
   });
 
   const theme = useTheme();
-  const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#000";
+  const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#fff";
 
   return (
     <div className="player">
